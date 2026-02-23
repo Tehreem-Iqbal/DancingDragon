@@ -41,27 +41,6 @@ Dancingdragon/
 └── README.md              # This file
 ```
 
-## Requirements
-
-- **Linux kernel**: 5.8+ (for eBPF ring buffer support)
-- **Go**: 1.24.0 or later
-- **Build tools**: gcc, clang, or similar C compiler
-- **Linux headers**: For kernel development files
-- **Root privileges**: Required for attaching eBPF programs to kernel tracepoints
-
-## Installation
-
-### Prerequisites
-
-Install required development tools:
-
-```bash
-# On Ubuntu/Debian
-sudo apt-get install -y golang-go build-essential linux-headers-$(uname -r) clang llvm
-
-# On Fedora/RHEL
-sudo dnf install -y golang gcc linux-headers clang llvm
-```
 
 ### Build
 
@@ -69,17 +48,8 @@ Build the project using the provided build task:
 
 ```bash
 cd /var/tmp/blackhole/Dancingdragon
+go generate // go generate compiles the eBPF kernel program (hello.c) into an object file (hello_bpf.o) and generates a Go source file (hello_bpf.go) that embeds the object and provides helper functions to work with it.
 go build -o dancing_dragon ./hooks
-```
-
-Or use the VS Code build task:
-
-```bash
-# Build only
-Ctrl+Shift+B (or select "Build" task)
-
-# Build and run with sudo
-Ctrl+Shift+B (or select "Build and Run with sudo" task)
 ```
 
 ## Usage
@@ -205,42 +175,6 @@ Threat detection behavior is controlled in `hooks/handlers/handlers.go`:
 2. Add handling logic in `hooks/handlers/handlers.go`
 3. Update `hooks/bpf/dance.c` to capture new event type
 
-## Troubleshooting
-
-### Permission Denied
-```bash
-# Must run with root or sudo
-sudo ./dancing_dragon
-```
-
-### eBPF Program Attachment Failed
-```bash
-# Check kernel version (5.8+ required)
-uname -r
-
-# Verify eBPF support
-cat /proc/config.gz | gunzip | grep CONFIG_BPF
-```
-
-### Memory Lock Errors
-```bash
-# Increase memory limits
-ulimit -l unlimited
-```
-
-## Dependencies
-
-- **github.com/cilium/ebpf v0.20.0**: eBPF tooling and bindings
-- **golang.org/x/sys v0.37.0**: System call bindings
-
-## Future Enhancements
-
-- Configurable hash database
-- Network-based threat intelligence integration
-- Detailed audit logging
-- Performance metrics and statistics
-- eBPF program signature verification
-- Multi-event correlation
 
 ## Security Considerations
 
@@ -252,11 +186,3 @@ ulimit -l unlimited
 ## License
 
 Dual MIT/GPL (as specified in eBPF program)
-
-## Support and Contributing
-
-For issues, feature requests, or contributions, please refer to the project repository.
-
----
-
-**Note**: Dancing Dragon is designed for security monitoring and threat detection. Use responsibly and ensure proper authorization before deployment in production environments.
