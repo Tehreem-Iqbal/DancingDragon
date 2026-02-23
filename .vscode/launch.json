@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Connect to Delve",
+            "type": "go",
+            "mode": "local",
+            "request": "launch",
+            "program": "${workspaceFolder}/hooks",
+            "env": {},
+            "args": []
+        },
+        {
+            "name": "Debug with Delve",
+            "type": "go",
+            "mode": "debug",
+            "request": "launch",
+            "program": "${workspaceFolder}/hooks",
+            "env": {},
+            "args": []
+        }
+    ]
+}

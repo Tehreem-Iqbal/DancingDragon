@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build and Run with sudo",
+            "type": "shell",
+            "command": "sudo",
+            "args": [
+                "${workspaceFolder}/hooks/dancing_dragon"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "go",
+            "args": [
+                "build",
+                "-o",
+                "dancing_dragon",
+                "."
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/hooks"
+            },
+            "problemMatcher": ["$go"],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Build and Run with sudo (Debug)",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "cd ${workspaceFolder}/hooks && go build -o dancing_dragon . && sudo ./dancing_dragon"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "test"
+            }
+        }
+    ]
+}
