@@ -25,7 +25,7 @@ struct proc_info
     u32 pid;
     u32 ppid;
     u32 uid;
-    u32 _pad; // padding for alignment
+    u32 _pad;
     char proc_path[MAX_PATH];
     u64 timestamp_ns;
 };
@@ -34,7 +34,7 @@ struct openat_info
 {
     struct event_hdr hdr;
     u32 pid;
-    u32 _pad; // padding for alignment
+    u32 _pad;
     char filename[MAX_PATH];
     int64_t dirfd;
 };
