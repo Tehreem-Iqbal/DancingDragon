@@ -18,7 +18,7 @@ const (
 
 	VirusTotalAPI = "https://www.virustotal.com/api/v3/files/"
 
-	VirusTotalAPIKey = "bfa4af320d59c3b60996f2e836467dd3c8435ae470053df87907821c07881067"
+	VirusTotalAPIKey = "YOUR_VIRUSTOTAL_API_KEY"
 )
 
 // ComputeFileHash calculates SHA256 hash of a file
